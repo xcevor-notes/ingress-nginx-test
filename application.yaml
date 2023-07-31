@@ -193,14 +193,14 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2023-07-08T05:26:52Z"
+  creationTimestamp: "2023-07-09T05:26:52Z"
   generation: 1
   labels:
     app: frontend3
   name: frontend3
   namespace: default
-  resourceVersion: "81949"
-  uid: 805dfe36-7d3e-4139-aa5a-53213a635204
+  resourceVersion: "81959"
+  uid: 805dfe36-7d3e-4139-aa5a-53213a635205
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -222,7 +222,7 @@ spec:
       containers:
       - image: dockerbogo/docker-nginx-hello-world
         imagePullPolicy: Always
-        name: httpd
+        name: httpd3
         ports:
         - containerPort: 80
           protocol: TCP
@@ -237,14 +237,14 @@ spec:
 status:
   availableReplicas: 1
   conditions:
-  - lastTransitionTime: "2023-07-08T05:26:59Z"
-    lastUpdateTime: "2023-07-08T05:26:59Z"
+  - lastTransitionTime: "2023-07-09T05:26:59Z"
+    lastUpdateTime: "2023-07-09T05:26:59Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
-  - lastTransitionTime: "2023-07-08T05:26:52Z"
-    lastUpdateTime: "2023-07-08T05:26:59Z"
+  - lastTransitionTime: "2023-07-09T05:26:52Z"
+    lastUpdateTime: "2023-07-09T05:26:59Z"
     message: ReplicaSet "frontend3-555c45b8fe" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
@@ -257,17 +257,17 @@ status:
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2023-07-08T05:27:42Z"
+  creationTimestamp: "2023-07-09T05:27:42Z"
   labels:
     app: frontend3
   name: frontend3service
   namespace: default
-  resourceVersion: "72057"
-  uid: 87a6fd6c-3896-4a66-8db0-5ea70fbb8957
+  resourceVersion: "72058"
+  uid: 87a6fd6c-3896-4a66-8db0-5ea70fbb8958
 spec:
-  clusterIP: 10.100.58.212
+  clusterIP: 10.100.58.213
   clusterIPs:
-  - 10.100.58.212
+  - 10.100.58.213
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
