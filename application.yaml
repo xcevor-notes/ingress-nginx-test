@@ -220,7 +220,7 @@ spec:
         app: frontend3
     spec:
       containers:
-      - image: nginxdemos/hello
+      - image: dockerbogo/docker-nginx-hello-world
         imagePullPolicy: Always
         name: httpd
         ports:
