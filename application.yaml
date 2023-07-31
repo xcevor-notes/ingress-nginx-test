@@ -187,3 +187,98 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2023-07-08T05:26:52Z"
+  generation: 1
+  labels:
+    app: frontend3
+  name: frontend3
+  namespace: default
+  resourceVersion: "81949"
+  uid: 805dfe36-7d3e-4139-aa5a-53213a635204
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: frontend3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend3
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: Always
+        name: httpd
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2023-07-08T05:26:59Z"
+    lastUpdateTime: "2023-07-08T05:26:59Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2023-07-08T05:26:52Z"
+    lastUpdateTime: "2023-07-08T05:26:59Z"
+    message: ReplicaSet "frontend3-555c45b8fe" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-07-08T05:27:42Z"
+  labels:
+    app: frontend3
+  name: frontend3service
+  namespace: default
+  resourceVersion: "72057"
+  uid: 87a6fd6c-3896-4a66-8db0-5ea70fbb8957
+spec:
+  clusterIP: 10.100.58.212
+  clusterIPs:
+  - 10.100.58.212
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend3
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
