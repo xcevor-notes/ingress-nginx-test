@@ -56,6 +56,16 @@ spec:
                 name: datetime-frontend-service
                 port:
                   number: 80
+    - host: datetime1.xcevor.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: datetime-backend-service
+                port:
+                  number: 80
     - host: todoweb.xcevor.com
       http:
         paths:
