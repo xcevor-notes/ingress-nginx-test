@@ -6,6 +6,16 @@ metadata:
 spec:
   ingressClassName: nginx-class
   rules:
+    - host: test.xcevor.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-test-service
+                port:
+                  number: 80
     - host: httpd.xcevor.com
       http:
         paths:
