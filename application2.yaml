@@ -121,9 +121,9 @@ spec:
         app: frontend3
     spec:
       containers:
-      - image: nginx
+      - image: pavanelthepu/todo-ui:1.0.2
         imagePullPolicy: Always
-        name: nginx
+        name: nginx3
         ports:
         - containerPort: 80
           protocol: TCP
