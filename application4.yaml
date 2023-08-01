@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: datetime-frontend-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: datetime-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: datetime-frontend
     spec:
       containers:
       - name: frontend
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: datetime-frontend-service
 spec:
   selector:
-    app: frontend
+    app: datetime-frontend
   ports:
   - port: 80
     targetPort: 8000
