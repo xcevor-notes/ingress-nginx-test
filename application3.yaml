@@ -13,8 +13,8 @@ spec:
         app: frontend3
     spec:
       containers:
-      - image: pavanelthepu/todo-ui:1.0.2
-        name: httpd3
+      - image: xcevor/pig-game-web:ingress
+        name: pig-game-web
         ports:
         - containerPort: 80
 ---
