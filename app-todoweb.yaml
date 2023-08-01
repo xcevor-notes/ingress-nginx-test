@@ -13,7 +13,7 @@ spec:
         app: app-todoweb
     spec:
       containers:
-      - image: xcevor/todoweb:ingress
+      - image: xcevor/todoweb:0.1
         name: app-todoweb
         ports:
         - containerPort: 8080
