@@ -121,7 +121,7 @@ spec:
         app: frontend3
     spec:
       containers:
-      - image: xcevor/pig-game-web:0.1
+      - image: pavanelthepu/todo-ui:1.0.2
         imagePullPolicy: Always
         name: nginx3
         ports:
