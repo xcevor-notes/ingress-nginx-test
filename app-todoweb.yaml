@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - image: xcevor/todoweb:0.1
-        name: xcevor/todoweb:0.1
+        name: app-todoweb
         ports:
         - containerPort: 80
 
