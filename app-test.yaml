@@ -13,8 +13,8 @@ spec:
         app: app-test
     spec:
       containers:
-      # - image: chentex/go-rest-api
-      - image: xcevor/welcomeapp:ingress
+      - image: chentex/go-rest-api
+      # - image: xcevor/welcomeapp:ingress
         imagePullPolicy: Always
         name: app-test
         ports:
