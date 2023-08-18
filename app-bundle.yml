@@ -1,0 +1,268 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend1
+  name: frontend1
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend1
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: Always
+        name: httpd
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend1
+  name: frontend1service
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend1
+status:
+  loadBalancer: {}
+
+  
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend2
+  name: frontend2
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend2
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend2
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend2
+  name: frontend2service
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend2
+status:
+  loadBalancer: {}
+
+  
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend3
+  template:
+    metadata:
+      labels:
+        app: frontend3
+    spec:
+      containers:
+      - image: xcevor/pig-game-web:ingress
+        name: pig-game-web
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend3service
+spec:
+  selector:
+    app: frontend3
+  ports:
+  - port: 80
+
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-todoweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-todoweb
+  template:
+    metadata:
+      labels:
+        app: app-todoweb
+    spec:
+      containers:
+      - image: xcevor/todoweb:ingress
+        imagePullPolicy: Always
+        name: app-todoweb
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-todoweb-service
+spec:
+  selector:
+    app: app-todoweb
+  ports:
+  - port: 80
+    targetPort: 8080
+
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datetime-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datetime-frontend
+  template:
+    metadata:
+      labels:
+        app: datetime-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: xcevor/datetime-react:ingress
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datetime-frontend-service
+spec:
+  selector:
+    app: datetime-frontend
+  ports:
+  - port: 80
+    targetPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datetime-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datetime-backend
+  template:
+    metadata:
+      labels:
+        app: datetime-backend
+    spec:
+      containers:
+      - name: frontend
+        image: xcevor/datetime-node:ingress
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datetime-backend-service
+spec:
+  selector:
+    app: datetime-backend
+  ports:
+  - port: 3000
+    targetPort: 3000
+
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-test
+  template:
+    metadata:
+      labels:
+        app: app-test
+    spec:
+      containers:
+      # - image: chentex/go-rest-api
+      - image: xcevor/welcomeapp-spring-boot:1.0
+        imagePullPolicy: Always
+        name: app-test
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-test-service
+spec:
+  selector:
+    app: app-test
+  ports:
+  - port: 80
+    targetPort: 8080
